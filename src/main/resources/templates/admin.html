@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome To Admin Panel</h1>
+<a th:href="@{'/'}">Go home</a>
+<div sec:authorize="isAuthenticated()">
+    <a th:href="@{'/profile'}"
+    th:text="${#authentication.principal.fullName + '-'+ #authentication.principal.email}"></a>
+</div>
+<form th:action="@{'/exit'}" method="post">
+    <button type="submit">Sign out</button>
+</form>
+</body>
+</html>
